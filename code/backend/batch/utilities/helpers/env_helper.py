@@ -32,12 +32,16 @@ class EnvHelper:
         self.LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
 
         # Azure
-        self.AZURE_SUBSCRIPTION_ID = os.getenv("AZURE_SUBSCRIPTION_ID", "")
-        self.AZURE_RESOURCE_GROUP = os.getenv("AZURE_RESOURCE_GROUP", "")
+        self.AZURE_SUBSCRIPTION_ID = os.getenv(
+            "AZURE_SUBSCRIPTION_ID", "a074a85b-4db1-4405-97cd-665b55001f75"
+        )
+        self.AZURE_RESOURCE_GROUP = os.getenv("AZURE_RESOURCE_GROUP", "rg-aioptimize")
 
         # Azure Search
-        self.AZURE_SEARCH_SERVICE = os.getenv("AZURE_SEARCH_SERVICE", "")
-        self.AZURE_SEARCH_INDEX = os.getenv("AZURE_SEARCH_INDEX", "")
+        self.AZURE_SEARCH_SERVICE = os.getenv(
+            "AZURE_SEARCH_SERVICE", "https://search-j5j2cgewb2u3q.search.windows.net/"
+        )
+        self.AZURE_SEARCH_INDEX = os.getenv("AZURE_SEARCH_INDEX", "index-j5j2cgewb2u3q")
         self.AZURE_SEARCH_USE_SEMANTIC_SEARCH = self.get_env_var_bool(
             "AZURE_SEARCH_USE_SEMANTIC_SEARCH", "False"
         )
@@ -45,12 +49,12 @@ class EnvHelper:
             "AZURE_SEARCH_SEMANTIC_SEARCH_CONFIG", "default"
         )
         self.AZURE_SEARCH_INDEX_IS_PRECHUNKED = os.getenv(
-            "AZURE_SEARCH_INDEX_IS_PRECHUNKED", ""
+            "AZURE_SEARCH_INDEX_IS_PRECHUNKED", "false"
         )
         self.AZURE_SEARCH_FILTER = os.getenv("AZURE_SEARCH_FILTER", "")
         self.AZURE_SEARCH_TOP_K = self.get_env_var_int("AZURE_SEARCH_TOP_K", 5)
         self.AZURE_SEARCH_ENABLE_IN_DOMAIN = (
-            os.getenv("AZURE_SEARCH_ENABLE_IN_DOMAIN", "true").lower() == "true"
+            os.getenv("AZURE_SEARCH_ENABLE_IN_DOMAIN", "false").lower() == "false"
         )
         self.AZURE_SEARCH_FIELDS_ID = os.getenv("AZURE_SEARCH_FIELDS_ID", "id")
         self.AZURE_SEARCH_CONTENT_COLUMNS = os.getenv(
@@ -74,19 +78,23 @@ class EnvHelper:
         )
         # Integrated Vectorization
         self.AZURE_SEARCH_DATASOURCE_NAME = os.getenv(
-            "AZURE_SEARCH_DATASOURCE_NAME", ""
+            "AZURE_SEARCH_DATASOURCE_NAME", "datasource-j5j2cgewb2u3q"
         )
-        self.AZURE_SEARCH_INDEXER_NAME = os.getenv("AZURE_SEARCH_INDEXER_NAME", "")
+        self.AZURE_SEARCH_INDEXER_NAME = os.getenv(
+            "AZURE_SEARCH_INDEXER_NAME", "indexer-j5j2cgewb2u3q"
+        )
         self.AZURE_SEARCH_USE_INTEGRATED_VECTORIZATION = self.get_env_var_bool(
             "AZURE_SEARCH_USE_INTEGRATED_VECTORIZATION", "False"
         )
 
-        self.AZURE_AUTH_TYPE = os.getenv("AZURE_AUTH_TYPE", "keys")
+        self.AZURE_AUTH_TYPE = os.getenv("AZURE_AUTH_TYPE", "rbac")
         # Azure OpenAI
-        self.AZURE_OPENAI_RESOURCE = os.getenv("AZURE_OPENAI_RESOURCE", "")
-        self.AZURE_OPENAI_MODEL = os.getenv("AZURE_OPENAI_MODEL", "")
+        self.AZURE_OPENAI_RESOURCE = os.getenv(
+            "AZURE_OPENAI_RESOURCE", "openai-j5j2cgewb2u3q"
+        )
+        self.AZURE_OPENAI_MODEL = os.getenv("AZURE_OPENAI_MODEL", "gpt-35-turbo-16k")
         self.AZURE_OPENAI_MODEL_NAME = os.getenv(
-            "AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo"
+            "AZURE_OPENAI_MODEL_NAME", "gpt-35-turbo-16k"
         )
         self.AZURE_OPENAI_VISION_MODEL = os.getenv("AZURE_OPENAI_VISION_MODEL", "gpt-4")
         self.AZURE_OPENAI_TEMPERATURE = os.getenv("AZURE_OPENAI_TEMPERATURE", "0")
@@ -102,7 +110,7 @@ class EnvHelper:
         )
         self.AZURE_OPENAI_STREAM = os.getenv("AZURE_OPENAI_STREAM", "true")
         self.AZURE_OPENAI_EMBEDDING_MODEL = os.getenv(
-            "AZURE_OPENAI_EMBEDDING_MODEL", ""
+            "AZURE_OPENAI_EMBEDDING_MODEL", "text-embedding-ada-002"
         )
         self.SHOULD_STREAM = (
             True if self.AZURE_OPENAI_STREAM.lower() == "true" else False

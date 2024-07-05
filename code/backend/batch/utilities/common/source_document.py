@@ -72,9 +72,13 @@ class SourceDocument:
         idx: Optional[int],
     ) -> "SourceDocument":
         parsed_url = urlparse(document_url)
+        print("document_url : " + document_url)
         file_url = parsed_url.scheme + "://" + parsed_url.netloc + parsed_url.path
+        print("file_url : " + file_url)
         filename = parsed_url.path
+        print("filename : " + filename)
         hash_key = hashlib.sha1(f"{file_url}_{idx}".encode("utf-8")).hexdigest()
+        print("hash_key : " + hash_key)
         hash_key = f"doc_{hash_key}"
         sas_placeholder = (
             "_SAS_TOKEN_PLACEHOLDER_"

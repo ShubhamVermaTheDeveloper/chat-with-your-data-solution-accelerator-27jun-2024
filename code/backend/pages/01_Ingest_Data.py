@@ -34,10 +34,14 @@ def reprocess_all():
     backend_url = urllib.parse.urljoin(
         env_helper.BACKEND_URL, "/api/BatchStartProcessing"
     )
+    st.write("backend_url", backend_url)
+
     params = {}
     if env_helper.FUNCTION_KEY is not None:
         params["code"] = env_helper.FUNCTION_KEY
         params["clientId"] = "clientKey"
+
+    st.write("params", params)
 
     try:
         response = requests.post(backend_url, params=params)
@@ -54,6 +58,8 @@ def reprocess_all():
 def add_urls():
     urls = st.session_state["urls"].split("\n")
     add_url_embeddings(urls)
+
+    st.write("urls", urls)
 
 
 def add_url_embeddings(urls: list[str]):

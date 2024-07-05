@@ -49,7 +49,9 @@ def _process_document_created_event(message_body) -> None:
 
     blob_client = AzureBlobStorageClient()
     file_name = _get_file_name_from_message(message_body)
+    logger.debug("file_name : %s", file_name)
     file_sas = blob_client.get_blob_sas(file_name)
+    print("file_sas : " + file_sas)
 
     embedder = EmbedderFactory.create(env_helper)
     embedder.embed_file(file_sas, file_name)
